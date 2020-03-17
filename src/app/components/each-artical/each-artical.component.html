@@ -1,0 +1,239 @@
+<!-- header -->
+<div class="container">
+  <div class="col-12 mt-5 header">
+    {{ specificArtical.title }}
+  </div>
+  <div class="drawLine"></div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- table style -->
+    <div class="col-2">
+      <table class="table social">
+        <tr>
+          <td class="tableTD">
+            23 Share
+          </td>
+        </tr>
+        <tr>
+          <td><i class="far fa-envelope float-left ml-2"></i>email</td>
+        </tr>
+        <tr>
+          <td><i class="fab fa-facebook-f float-left ml-2"></i>facebook</td>
+        </tr>
+        <tr>
+          <td><i class="fab fa-twitter float-left ml-2"></i>twitter</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-share float-left ml-2"></i>more</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-9">
+      <img
+        [src]="specificArtical.urlToImage"
+        class="img-fluid mb-3"
+        alt="Responsive image"
+      />
+      <div class="mb-5">{{ specificArtical.content }}</div>
+
+      <div class="commentSection">
+        <h2 class="mt-5 mb-3 formHeader">Comments</h2>
+        <div class="comments min-vh-20">
+          <div class="container">
+            <div *ngIf="commentList">
+              <div *ngFor="let comments of commentList">
+                <div class="row commentContent mb-3">
+                  <img
+                    class="rounded commentImg"
+                    src="../../../assets/images/iconPerson2.png"
+                  />
+                  <div class="col-11">
+                    <div class="mb-2 commentPerson">
+                      Person
+                    </div>
+                    <div>{{ comments.msg }}</div>
+                  </div>
+                  <div class="drawLine"></div>
+                </div>
+              </div>
+            </div>
+
+            <form
+              [formGroup]="commentForm"
+              (ngSubmit)="onSubmitComment()"
+              class="bg-light col-xl-12 col-lg-12 col-md-6 col-sm-7 col-10 "
+            >
+              <div class="input-group ">
+                <input
+                  type="text"
+                  placeholder="Type a message"
+                  formControlName="msg"
+                  aria-describedby="button-addon2"
+                  class="form-control rounded-0 border-0 py-4 bg-light"
+                  [ngClass]="{
+                    error: submittedComment && commentForm.controls.msg.errors
+                  }"
+                />
+                <div
+                  *ngIf="
+                    submittedComment ||
+                    (commentForm.get('msg').invalid &&
+                      (commentForm.get('msg').dirty ||
+                        commentForm.get('msg').touched))
+                  "
+                  class="validall"
+                >
+                  <div
+                    class="validall"
+                    *ngIf="commentForm.controls.msg.errors?.required"
+                  >
+                    <sup>*</sup>No comment exist
+                  </div>
+                  <div
+                    class="validall"
+                    *ngIf="commentForm.controls.msg.errors?.pattern"
+                  >
+                    <sup>*</sup>Please enter letters and numbers only
+                  </div>
+                </div>
+                <div class="input-group-append">
+                  <button id="button-addon2" type="submit" class="btn btn-link">
+                    <i class="fa fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <h2 class="mt-5 mb-3 formHeader">Join the Conversation</h2>
+      <form [formGroup]="joinform" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-7">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              formControlName="fullName"
+              [ngClass]="{
+                error: submitted && joinform.controls.fullName.errors
+              }"
+              id="fullName"
+            />
+            <div
+              *ngIf="
+                submitted ||
+                (joinform.get('fullName').invalid &&
+                  (joinform.get('fullName').dirty ||
+                    joinform.get('fullName').touched))
+              "
+              class="validall"
+            >
+              <div
+                class="validall"
+                *ngIf="joinform.controls.fullName.errors?.required"
+              >
+                <sup>*</sup>Please enter your FullName
+              </div>
+              <div
+                class="validall"
+                *ngIf="joinform.controls.fullName.errors?.pattern"
+              >
+                <sup>*</sup>Please enter letter only
+              </div>
+              <div
+                class="validall"
+                *ngIf="joinform.controls.fullName.errors?.minLength"
+              >
+                <sup>*</sup> Minimum length is 2
+              </div>
+              <div
+                class="validall"
+                *ngIf="joinform.controls.fullName.errors?.maxLength"
+              >
+                <sup>*</sup> Maximum length is 50
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-7">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              formControlName="email"
+              [ngClass]="{
+                error: submitted && joinform.controls.email.errors
+              }"
+              id="Email"
+            />
+            <div
+              *ngIf="
+                submitted ||
+                (joinform.get('email').invalid &&
+                  (joinform.get('email').dirty ||
+                    joinform.get('email').touched))
+              "
+              class="validall"
+            >
+              <div
+                class="validall"
+                *ngIf="joinform.controls.email.errors?.required"
+              >
+                <sup>*</sup>Please enter your email
+              </div>
+              <div
+                class="validall"
+                *ngIf="joinform.controls.email.errors?.pattern"
+              >
+                <sup>*</sup>Please enter valid email
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <textarea
+              class="form-control"
+              rows="10"
+              placeholder="Message"
+              formControlName="message"
+              [ngClass]="{
+                error: submitted && joinform.controls.email.errors
+              }"
+              id="Message"
+            >
+            </textarea>
+            <div
+              *ngIf="
+                submitted ||
+                (joinform.get('message').invalid &&
+                  (joinform.get('message').dirty ||
+                    joinform.get('message').touched))
+              "
+              class="validall"
+            >
+              <div
+                class="validall"
+                *ngIf="joinform.controls.message.errors?.required"
+              >
+                <sup>*</sup>Please enter message
+              </div>
+              <div
+                class="validall"
+                *ngIf="joinform.controls.message.errors?.minLength"
+              >
+                <sup>*</sup>Minimum length is 3 Character
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="contactBTN">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

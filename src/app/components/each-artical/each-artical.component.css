@@ -1,0 +1,62 @@
+.header {
+  font-size: 35px;
+  font-weight: bolder;
+}
+/* table style  */
+.tableTD {
+  height: 100px;
+  vertical-align: middle;
+  font-weight: bolder;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.container .row table {
+  text-align: center;
+  border-style: solid;
+  border-width: 0.5px;
+  border-radius: 7px;
+  border-color: darkgray;
+}
+.container .row .social tr td {
+  border-radius: 5px;
+}
+/* comment style */
+.commentImg {
+  width: 50px;
+  height: 40px;
+}
+.commentPerson {
+  font-weight: bold;
+  font-size: 15px;
+}
+.formHeader {
+  font-weight: lighter;
+}
+.contactBTN {
+  color: #ffffff;
+  background-color: #cc0000;
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  width: 140px;
+  font-weight: bold;
+  border: none;
+  border-radius: 7px;
+}
+.comments {
+  height: 100%;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: gray;
+}
+.drawLine {
+  border-bottom: 10px solid #ebebe0;
+}
+form {
+  /* position: fixed; */
+  border-radius: 7px;
+  /* margin-top: 5px; */
+}
