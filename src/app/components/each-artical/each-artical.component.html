@@ -9,7 +9,7 @@
 <div class="container mt-5">
   <div class="row">
     <!-- table style -->
-    <div class="col-2">
+    <div class="col-2 d-none d-lg-block d-xl-block">
       <table class="table social">
         <tr>
           <td class="tableTD">
@@ -38,32 +38,57 @@
       />
       <div class="mb-5">{{ specificArtical.content }}</div>
 
+      <table class="secondTable d-lg-none d-xl-none">
+        <tr>
+          <td class="tableTD">23 Share</td>
+          <td class="tableItem">
+            <i class="far fa-envelope float-left mr-2"></i>email
+          </td>
+          <td class="tableItem">
+            <i class="fab fa-facebook-f float-left mr-2"></i>facebook
+          </td>
+          <td class="tableItem">
+            <i class="fab fa-twitter float-left mr-2"></i>twitter
+          </td>
+          <td class="tableItem">
+            <i class="fas fa-share float-left mr-2"></i>more
+          </td>
+        </tr>
+      </table>
+
       <div class="commentSection">
         <h2 class="mt-5 mb-3 formHeader">Comments</h2>
         <div class="comments min-vh-20">
           <div class="container">
             <div *ngIf="commentList">
-              <div *ngFor="let comments of commentList">
+              <div
+                *ngFor="
+                  let comments of commentList;
+                  let i = index;
+                  let last = last
+                "
+              >
                 <div class="row commentContent mb-3">
                   <img
-                    class="rounded commentImg"
+                    class="rounded commentImg "
                     src="../../../assets/images/iconPerson2.png"
                   />
-                  <div class="col-11">
+                  <div class="col-10">
                     <div class="mb-2 commentPerson">
                       Person
                     </div>
                     <div>{{ comments.msg }}</div>
                   </div>
-                  <div class="drawLine"></div>
                 </div>
+                <div *ngIf="last" class=" mb-3 mt-3"></div>
+                <div *ngIf="!last" class="drawLine2 mb-3 mt-3"></div>
               </div>
             </div>
 
             <form
               [formGroup]="commentForm"
               (ngSubmit)="onSubmitComment()"
-              class="bg-light col-xl-12 col-lg-12 col-md-6 col-sm-7 col-10 "
+              class="bg-light col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 "
             >
               <div class="input-group ">
                 <input

@@ -2,57 +2,91 @@
 <div class="container mt-5">
   <div class="row ">
     <!-- section1 mainArticle -->
-    <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
       <div
         class="articals"
         *ngFor="let artical of eachArtical | slice: 0:1; let i = index"
       >
-        <div class="card mainArticleCard">
+        <div class="card  mainArticleCard">
           <img
             class="card-img-top mainArticleImage"
             [src]="artical.urlToImage"
             alt="Card image cap"
           />
-          <div class="card-body">
-            <h5 class="card-title firstCardTitle">{{ artical.title }}</h5>
-            <p class="card-text">{{ artical.description }}</p>
-            <button (click)="sendItem(artical.title)" class="btn btn-primary">
+          <div class="card-body  d-flex " style="margin-top: 30px;">
+            <a [routerLink]="" (click)="sendItem(artical.title)">
+              <h5
+                class="card-title firstCardTitle mb-3"
+                style="line-height: 50px;"
+              >
+                {{ artical.title }}
+              </h5>
+              <p class="card-text" style="line-height: 25px;">
+                {{ artical.description }}
+              </p>
+            </a>
+            <!-- <button
+              (click)="sendItem(artical.title)"
+              class="btn btn-primary justify-content-start align-self-end"
+            >
               Show More
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
     </div>
     <!-- section2 two Article next to mainArticle -->
-    <div class="col-xl-4 col-lg-4 col-md-6 col-12 ">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12  col-12 ">
       <div
         class="articals"
         *ngFor="let artical of eachArtical | slice: 1:3; let i = index"
       >
-        <div class="card twoArticleCard">
+        <div class="card twoArticleCard mb-5">
           <img
             class="card-img-top twoArticleImage"
             [src]="artical.urlToImage"
             alt="Card image cap"
           />
-          <div class="card-body">
-            <h5 class="card-title">{{ artical.title }}</h5>
-
-            <button (click)="sendItem(artical.title)" class="btn btn-primary">
+          <div class="card-body " style="margin-top: 30px;">
+            <a [routerLink]="" (click)="sendItem(artical.title)">
+              <h5 class="card-title">{{ artical.title }}</h5>
+            </a>
+            <!-- <button (click)="sendItem(artical.title)" class="btn btn-primary">
               Show More
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
     </div>
     <!-- section3 recent post -->
     <div class="col-4 recentPost d-none d-lg-block d-xl-block">
-      <h6>Recent Post</h6>
+      <h6 class="mb-4">Recent Post</h6>
       <div
         class="articals"
         *ngFor="let artical of eachArtical | slice: 6:9; let i = index"
       >
-        <div class="row mb-5">
+        <div class="card ">
+          <div class="row no-gutters">
+            <div class="col-md-4 ">
+              <img
+                [src]="artical.urlToImage"
+                class="card-img "
+                style="height: 70px;"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body pl-2">
+                <!-- <h5 class="card-title">{{ artical.title }}</h5> -->
+                <p class="card-text">{{ artical.title }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="i == 2" class=" mb-4 mt-4"></div>
+          <div *ngIf="i != 2" class="drawLine mb-4 mt-4"></div>
+        </div>
+
+        <!-- <div class="row mb-5">
           <div class="col-5 mr-3">
             <img class="recentPostImage" [src]="artical.urlToImage" />
           </div>
@@ -62,20 +96,38 @@
               {{ artical.title }}
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
-
-  <div class="row">
+  <div class="drawLine d-block d-sm-block d-md-none mb-3 mt-3"></div>
+  <div class="row ">
     <!-- section4 horizontal artical-->
-    <div class="col-8">
-      <h6 class="mb-3">Editors Picks</h6>
+    <div class="EditorsPicksStyle col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12">
+      <h6
+        class="mb-4"
+        style="color: black; font-size: 20px; font-weight: bolder;"
+      >
+        Editors Picks
+      </h6>
       <div
-        class="articals  mb-5"
+        class="articals  mb-5 "
         *ngFor="let artical of eachArtical | slice: 3:6; let i = index"
       >
-        <div class="card">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4 ">
+              <img [src]="artical.urlToImage" class="card-img " alt="..." />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body pl-2">
+                <h5 class="card-title">{{ artical.title }}</h5>
+                <p class="card-text">{{ artical.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card">
           <div class="card-horizontal">
             <div class="row">
               <div class="col-3">
@@ -89,7 +141,10 @@
               </div>
               <div class="col-9">
                 <a [routerLink]="" (click)="sendItem(artical.title)">
-                  <div class="card-body">
+                  <div
+                    class="card-body "
+                    style="text-align: left; padding: 30px;"
+                  >
                     <h4 class="card-title">{{ artical.title }}</h4>
                     <p class="card-text">{{ artical.description }}</p>
                   </div>
@@ -97,21 +152,26 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- section5 Most Popular-->
-    <div class="col-4 recentPost MostPopular d-none d-lg-block d-xl-block">
-      <h6>5 Most Popular</h6>
+    <div class="col-4 recentPost MostPopular d-none d-lg-block d-xl-block mt-5">
+      <h6 class="col-12 mb-4">5 Most Popular</h6>
       <div
         class="articals"
         *ngFor="let artical of eachArtical | slice: 0:5; let i = index"
       >
         <a [routerLink]="" (click)="sendItem(artical.title)">
-          <div class="col-12 mb-3 MostPopularTitle">
-            <span>{{ i + 1 }}.</span> {{ artical.title }}
+          <div
+            class="col-12 mb-3 d-flex MostPopularTitle"
+            style="text-align: left;"
+          >
+            <span class="mr-3">{{ i + 1 }} </span> {{ artical.title }}
           </div>
         </a>
+        <div *ngIf="i == 4" class=" mb-4 mt-4"></div>
+          <div *ngIf="i != 4" class="drawLine mb-4 mt-4"></div>
       </div>
     </div>
   </div>
@@ -120,10 +180,10 @@
   <div class="col-12">
     <div class="drawLine"></div>
   </div>
-  <h6 class="mt-3 mb-4">Trending</h6>
+  <h6 class="mt-3 mb-4" style="color: black; font-weight: normal;">Trending</h6>
   <div class="row">
     <div
-      class="articals col-3 mb-5"
+      class="articals col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6 "
       *ngFor="let artical of eachArtical | slice: 3:7; let i = index"
     >
       <div class="card trendingCard">
@@ -132,7 +192,7 @@
           [src]="artical.urlToImage"
           alt="Card image cap"
         />
-        <div class="card-body">
+        <div class="card-body " style="margin-top: 30px;">
           <a [routerLink]="" (click)="sendItem(artical.title)">
             <h5 class="card-title trendingCardTitle">
               {{ artical.title }}

@@ -10,6 +10,26 @@
   font-size: 40px;
   line-height: 40px;
 }
+/* .secondTable {
+  height: 100px;
+  vertical-align: middle;
+  font-weight: bolder;
+  font-size: 40px;
+  line-height: 40px;
+} */
+.secondTable,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.secondTable td {
+  padding: 5px;
+  text-align: left;
+}
+.secondTable .tableItem {
+  font-size: 15px;
+}
 
 .container .row table {
   text-align: center;
@@ -54,6 +74,9 @@
 }
 .drawLine {
   border-bottom: 10px solid #ebebe0;
+}
+.drawLine2 {
+  border-bottom: 5px solid #ebebe0;
 }
 form {
   /* position: fixed; */
